@@ -1,0 +1,977 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/moll/node-mitm">mitm (v1.3.2)</a>
+</h1>
+<h4>Intercept and mock outgoing network TCP connections and HTTP requests for testing. Intercepts and gives you a Net.Socket, Http.IncomingMessage and Http.ServerResponse to test and respond with. Useful when testing code that hits remote servers.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm">module mitm</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.mitm">
+            function <span class="apidocSignatureSpan"></span>mitm
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket">
+            function <span class="apidocSignatureSpan">mitm.</span>internal_socket
+            <span class="apidocSignatureSpan">(remote)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.socket">
+            function <span class="apidocSignatureSpan">mitm.</span>socket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.stubs">
+            function <span class="apidocSignatureSpan">mitm.</span>stubs
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.tls_socket">
+            function <span class="apidocSignatureSpan">mitm.</span>tls_socket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mitm.</span>internal_socket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mitm.</span>socket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mitm.</span>stubs.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">mitm.</span>tls_socket.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm.internal_socket">module mitm.internal_socket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.internal_socket">
+            function <span class="apidocSignatureSpan">mitm.</span>internal_socket
+            <span class="apidocSignatureSpan">(remote)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.pair">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.</span>pair
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm.internal_socket.prototype">module mitm.internal_socket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype._read">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>_read
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype._write">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>_write
+            <span class="apidocSignatureSpan">(data, encoding, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.close">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>close
+            <span class="apidocSignatureSpan">(chunk, encoding, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.readStart">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>readStart
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.readStop">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>readStop
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.ref">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>ref
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.unref">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>unref
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.writeAsciiString">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeAsciiString
+            <span class="apidocSignatureSpan">(req, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.writeBinaryString">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeBinaryString
+            <span class="apidocSignatureSpan">(req, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.writeBuffer">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeBuffer
+            <span class="apidocSignatureSpan">(req, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.writeLatin1String">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeLatin1String
+            <span class="apidocSignatureSpan">(req, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.writeUcs2String">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeUcs2String
+            <span class="apidocSignatureSpan">(req, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.internal_socket.prototype.writeUtf8String">
+            function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeUtf8String
+            <span class="apidocSignatureSpan">(req, data)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm.socket">module mitm.socket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.socket.socket">
+            function <span class="apidocSignatureSpan">mitm.</span>socket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm.socket.prototype">module mitm.socket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.socket.prototype.bypass">
+            function <span class="apidocSignatureSpan">mitm.socket.prototype.</span>bypass
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm.stubs">module mitm.stubs</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.stubs.stubs">
+            function <span class="apidocSignatureSpan">mitm.</span>stubs
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm.stubs.prototype">module mitm.stubs.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.stubs.prototype.restore">
+            function <span class="apidocSignatureSpan">mitm.stubs.prototype.</span>restore
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.stubs.prototype.stub">
+            function <span class="apidocSignatureSpan">mitm.stubs.prototype.</span>stub
+            <span class="apidocSignatureSpan">(obj, prop, value)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm.tls_socket">module mitm.tls_socket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.tls_socket.tls_socket">
+            function <span class="apidocSignatureSpan">mitm.</span>tls_socket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.mitm.tls_socket.prototype">module mitm.tls_socket.prototype</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">mitm.tls_socket.prototype.</span>authorized</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">mitm.tls_socket.prototype.</span>encrypted</span>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.tls_socket.prototype.bypass">
+            function <span class="apidocSignatureSpan">mitm.tls_socket.prototype.</span>bypass
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.mitm.tls_socket.prototype.getSession">
+            function <span class="apidocSignatureSpan">mitm.tls_socket.prototype.</span>getSession
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm" id="apidoc.module.mitm">module mitm</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.mitm" id="apidoc.element.mitm.mitm">
+        function <span class="apidocSignatureSpan"></span>mitm
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Mitm() {
+  if (!(this instanceof Mitm))
+    return Mitm.apply(Object.create(Mitm.prototype), arguments).enable()
+
+  this.stubs = new Stubs
+  this.on("request", addCrossReferences)
+
+  return this
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket" id="apidoc.element.mitm.internal_socket">
+        function <span class="apidocSignatureSpan">mitm.</span>internal_socket
+        <span class="apidocSignatureSpan">(remote)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function InternalSocket(remote) {
+  DuplexStream.call(this)
+  if (remote) this.remote = remote
+
+  // End is for ReadableStream.prototype.push(null).
+  // Finish is for WritableStream.prototype.end.
+  this.on("data", readData.bind(this))
+  this.on("end", readEof.bind(this))
+  this.on("finish", this._write.bind(this, null, null, noop))
+
+  return this.pause(), this
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.socket" id="apidoc.element.mitm.socket">
+        function <span class="apidocSignatureSpan">mitm.</span>socket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Socket() { Net.Socket.apply(this, arguments) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.stubs" id="apidoc.element.mitm.stubs">
+        function <span class="apidocSignatureSpan">mitm.</span>stubs
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Stubs() {}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.tls_socket" id="apidoc.element.mitm.tls_socket">
+        function <span class="apidocSignatureSpan">mitm.</span>tls_socket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function TlsSocket() { Socket.apply(this, arguments) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm.internal_socket" id="apidoc.module.mitm.internal_socket">module mitm.internal_socket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.internal_socket" id="apidoc.element.mitm.internal_socket.internal_socket">
+        function <span class="apidocSignatureSpan">mitm.</span>internal_socket
+        <span class="apidocSignatureSpan">(remote)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function InternalSocket(remote) {
+  DuplexStream.call(this)
+  if (remote) this.remote = remote
+
+  // End is for ReadableStream.prototype.push(null).
+  // Finish is for WritableStream.prototype.end.
+  this.on("data", readData.bind(this))
+  this.on("end", readEof.bind(this))
+  this.on("finish", this._write.bind(this, null, null, noop))
+
+  return this.pause(), this
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.pair" id="apidoc.element.mitm.internal_socket.pair">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.</span>pair
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">pair = function () {
+  var a = Object.create(InternalSocket.prototype)
+  var b = Object.create(InternalSocket.prototype)
+  return [InternalSocket.call(a, b), InternalSocket.call(b, a)]
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+Mitm.prototype.disable = function() {
+return this.stubs.restore(), this
+}
+
+Mitm.prototype.connect = function connect(orig, Socket, opts, done) {
+var sockets = InternalSocket.<span class="apidocCodeKeywordSpan">pair</span>()
+var client = new Socket(_.defaults({handle: sockets[0]}, opts))
+
+this.emit("connect", client, opts)
+if (client.bypassed) return orig.call(this, opts, done)
+
+var server = client.server = new Socket({handle: sockets[1]})
+this.emit("connection", server, opts)
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm.internal_socket.prototype" id="apidoc.module.mitm.internal_socket.prototype">module mitm.internal_socket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype._read" id="apidoc.element.mitm.internal_socket.prototype._read">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>_read
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function noop() {}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype._write" id="apidoc.element.mitm.internal_socket.prototype._write">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>_write
+        <span class="apidocSignatureSpan">(data, encoding, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_write = function (data, encoding, done) {
+  var remote = this.remote
+  process.nextTick(function() { remote.push(data, encoding); done() })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.close" id="apidoc.element.mitm.internal_socket.prototype.close">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>close
+        <span class="apidocSignatureSpan">(chunk, encoding, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">close = function (chunk, encoding, cb) {
+  var state = this._writableState;
+
+  if (typeof chunk === 'function') {
+    cb = chunk;
+    chunk = null;
+    encoding = null;
+  } else if (typeof encoding === 'function') {
+    cb = encoding;
+    encoding = null;
+  }
+
+  if (chunk !== null &amp;&amp; chunk !== undefined)
+    this.write(chunk, encoding);
+
+  // .end() fully uncorks
+  if (state.corked) {
+    state.corked = 1;
+    this.uncork();
+  }
+
+  // ignore unnecessary end() calls.
+  if (!state.ending &amp;&amp; !state.finished)
+    endWritable(this, state, cb);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.readStart" id="apidoc.element.mitm.internal_socket.prototype.readStart">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>readStart
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">readStart = function () { this.resume(); this.read(0) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.readStop" id="apidoc.element.mitm.internal_socket.prototype.readStop">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>readStop
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">readStop = function () { this.pause() }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.ref" id="apidoc.element.mitm.internal_socket.prototype.ref">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>ref
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function noop() {}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.unref" id="apidoc.element.mitm.internal_socket.prototype.unref">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>unref
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function noop() {}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.writeAsciiString" id="apidoc.element.mitm.internal_socket.prototype.writeAsciiString">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeAsciiString
+        <span class="apidocSignatureSpan">(req, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">writeAsciiString = function (req, data) {
+  this.write(NODE_0_10 ? req : data, "ascii")
+  if (NODE_0_10) return {}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.writeBinaryString" id="apidoc.element.mitm.internal_socket.prototype.writeBinaryString">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeBinaryString
+        <span class="apidocSignatureSpan">(req, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">writeBinaryString = function (req, data) {
+  this.write(data, "binary")
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.writeBuffer" id="apidoc.element.mitm.internal_socket.prototype.writeBuffer">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeBuffer
+        <span class="apidocSignatureSpan">(req, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">writeBuffer = function (req, data) {
+  this.write(NODE_0_10 ? req : data)
+  if (NODE_0_10) return {}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.writeLatin1String" id="apidoc.element.mitm.internal_socket.prototype.writeLatin1String">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeLatin1String
+        <span class="apidocSignatureSpan">(req, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">writeLatin1String = function (req, data) {
+  this.write(data, "latin1")
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.writeUcs2String" id="apidoc.element.mitm.internal_socket.prototype.writeUcs2String">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeUcs2String
+        <span class="apidocSignatureSpan">(req, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">writeUcs2String = function (req, data) {
+  this.write(NODE_0_10 ? req : data, "ucs2")
+  if (NODE_0_10) return {}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.internal_socket.prototype.writeUtf8String" id="apidoc.element.mitm.internal_socket.prototype.writeUtf8String">
+        function <span class="apidocSignatureSpan">mitm.internal_socket.prototype.</span>writeUtf8String
+        <span class="apidocSignatureSpan">(req, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">writeUtf8String = function (req, data) {
+  this.write(NODE_0_10 ? req : data, "utf8")
+  if (NODE_0_10) return {}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm.socket" id="apidoc.module.mitm.socket">module mitm.socket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.socket.socket" id="apidoc.element.mitm.socket.socket">
+        function <span class="apidocSignatureSpan">mitm.</span>socket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Socket() { Net.Socket.apply(this, arguments) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm.socket.prototype" id="apidoc.module.mitm.socket.prototype">module mitm.socket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.socket.prototype.bypass" id="apidoc.element.mitm.socket.prototype.bypass">
+        function <span class="apidocSignatureSpan">mitm.socket.prototype.</span>bypass
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">bypass = function () {
+  this.bypassed = true
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+you get when you write Node.js HTTP servers with `Net.Server` or use a library
+like [Express.js][express].
+
+- **Bypass** interception selectively for some connections (such as your SQL
+server) and let them connect as usual.
+```javascript
+mitm.on("connect", function(socket, opts) {
+  if (opts.host == "sql.example.org" &amp;&amp; opts.port == 5432) socket.<span class="apidocCodeKeywordSpan">bypass
+</span>()
+})
+```
+
+- **Developed with automated tests**. Yeah, I know, why should one list this
+a feature when writing tests is just a sign of professionalism and respect
+towards other developers? But in a world where so many libraries and
+"production" software are released without *any* tests, I like to point out
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm.stubs" id="apidoc.module.mitm.stubs">module mitm.stubs</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.stubs.stubs" id="apidoc.element.mitm.stubs.stubs">
+        function <span class="apidocSignatureSpan">mitm.</span>stubs
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Stubs() {}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm.stubs.prototype" id="apidoc.module.mitm.stubs.prototype">module mitm.stubs.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.stubs.prototype.restore" id="apidoc.element.mitm.stubs.prototype.restore">
+        function <span class="apidocSignatureSpan">mitm.stubs.prototype.</span>restore
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">restore = function () {
+  var stub
+  while (stub = this.pop()) stub[0][stub[1]] = stub[2]
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  this.request.bind(this)
+))
+
+return this
+}
+
+Mitm.prototype.disable = function() {
+return this.stubs.<span class="apidocCodeKeywordSpan">restore</span>(), this
+}
+
+Mitm.prototype.connect = function connect(orig, Socket, opts, done) {
+var sockets = InternalSocket.pair()
+var client = new Socket(_.defaults({handle: sockets[0]}, opts))
+
+this.emit("connect", client, opts)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.stubs.prototype.stub" id="apidoc.element.mitm.stubs.prototype.stub">
+        function <span class="apidocSignatureSpan">mitm.stubs.prototype.</span>stub
+        <span class="apidocSignatureSpan">(obj, prop, value)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stub = function (obj, prop, value) {
+  this.push([obj, prop, obj[prop]])
+  obj[prop] = value
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var NODE_0_10 = !!process.version.match(/^v0\.10\./)
+
+Mitm.prototype.enable = function() {
+// Connect is called synchronously.
+var netConnect = this.tcpConnect.bind(this, Net.connect)
+var tlsConnect = this.tlsConnect.bind(this, Tls.connect)
+
+this.stubs.<span class="apidocCodeKeywordSpan">stub</span>(Net, "connect", netConnect)
+this.stubs.stub(Net, "createConnection", netConnect)
+this.stubs.stub(Http.Agent.prototype, "createConnection", netConnect)
+this.stubs.stub(Tls, "connect", tlsConnect)
+
+if (NODE_0_10) {
+  // Node v0.10 sets createConnection on the object in the constructor.
+  this.stubs.stub(Http.globalAgent, "createConnection", netConnect)
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm.tls_socket" id="apidoc.module.mitm.tls_socket">module mitm.tls_socket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.tls_socket.tls_socket" id="apidoc.element.mitm.tls_socket.tls_socket">
+        function <span class="apidocSignatureSpan">mitm.</span>tls_socket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function TlsSocket() { Socket.apply(this, arguments) }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.mitm.tls_socket.prototype" id="apidoc.module.mitm.tls_socket.prototype">module mitm.tls_socket.prototype</a></h1>
+
+
+
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.tls_socket.prototype.bypass" id="apidoc.element.mitm.tls_socket.prototype.bypass">
+        function <span class="apidocSignatureSpan">mitm.tls_socket.prototype.</span>bypass
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">bypass = function () {
+  this.bypassed = true
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+you get when you write Node.js HTTP servers with `Net.Server` or use a library
+like [Express.js][express].
+
+- **Bypass** interception selectively for some connections (such as your SQL
+server) and let them connect as usual.
+```javascript
+mitm.on("connect", function(socket, opts) {
+  if (opts.host == "sql.example.org" &amp;&amp; opts.port == 5432) socket.<span class="apidocCodeKeywordSpan">bypass
+</span>()
+})
+```
+
+- **Developed with automated tests**. Yeah, I know, why should one list this
+a feature when writing tests is just a sign of professionalism and respect
+towards other developers? But in a world where so many libraries and
+"production" software are released without *any* tests, I like to point out
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.mitm.tls_socket.prototype.getSession" id="apidoc.element.mitm.tls_socket.prototype.getSession">
+        function <span class="apidocSignatureSpan">mitm.tls_socket.prototype.</span>getSession
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getSession = function () { return null }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
